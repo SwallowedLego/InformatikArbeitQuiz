@@ -176,7 +176,7 @@
 <body>
     <div class="container">
         <h1>📝 HTML/CSS Quiz</h1>
-        <p class="subtitle">Vorbereitung auf die Informatik-Arbeit • 20 Fragen</p>
+        <p class="subtitle">Vorbereitung auf die Informatik-Arbeit • 30 Fragen</p>
 
         <!-- Frage 1: Multiple Choice - HTML Struktur -->
         <div class="question-block">
@@ -490,6 +490,198 @@
                 <strong>#</strong> = ID-Selektor (id)<br>
                 Ohne Symbol = Element-Selektor (Tag-Name)<br>
                 <strong>*</strong> = Universal-Selektor (alle Elemente)
+            </div>
+        </div>
+
+        <!-- Frage 21: Multiple Choice - Video Element -->
+        <div class="question-block">
+            <div class="question-number">Frage 21 <span class="topic-badge">Media-Elemente</span></div>
+            <div class="question-text">Welches Attribut ermöglicht es, dass ein Video automatisch abgespielt wird?</div>
+            <div class="options">
+                <div class="option">A) play="auto"</div>
+                <div class="option">B) autoplay</div>
+                <div class="option">C) auto="true"</div>
+                <div class="option">D) start="auto"</div>
+            </div>
+            <div class="answer">
+                <div class="answer-label">✓ Lösung:</div>
+                <strong>B)</strong> Das <strong>autoplay</strong>-Attribut startet das Video automatisch beim Laden der Seite.<br>
+                Beispiel: &lt;video src="video.mp4" autoplay controls&gt;&lt;/video&gt;<br>
+                Weitere wichtige Video-Attribute: <strong>controls</strong> (Steuerungselemente), <strong>loop</strong> (Wiederholen), <strong>muted</strong> (Stummschaltung).
+            </div>
+        </div>
+
+        <!-- Frage 22: Lückentext - Audio Element -->
+        <div class="question-block">
+            <div class="question-number">Frage 22 <span class="topic-badge">Media-Elemente</span></div>
+            <div class="question-text">
+                Ergänze den Code für ein Audio-Element mit Steuerungselementen:<br>
+                <div class="fill-blank">&lt;<input type="text" placeholder="Tag"> src="musik.mp3" <input type="text" placeholder="Attribut">&gt;&lt;/<input type="text" placeholder="Tag">&gt;</div>
+            </div>
+            <div class="answer">
+                <div class="answer-label">✓ Lösung:</div>
+                &lt;<strong>audio</strong> src="musik.mp3" <strong>controls</strong>&gt;&lt;/<strong>audio</strong>&gt;<br>
+                Das <strong>controls</strong>-Attribut zeigt Play-, Pause- und Lautstärke-Buttons an. Ohne dieses Attribut wäre das Audio nicht steuerbar.
+            </div>
+        </div>
+
+        <!-- Frage 23: Multiple Choice - Element vs Tag -->
+        <div class="question-block">
+            <div class="question-number">Frage 23 <span class="topic-badge">Fachbegriffe</span></div>
+            <div class="question-text">Was ist der Unterschied zwischen einem "Tag" und einem "Element"?</div>
+            <div class="options">
+                <div class="option">A) Es gibt keinen Unterschied</div>
+                <div class="option">B) Ein Tag ist die Auszeichnung, ein Element besteht aus öffnendem Tag, Inhalt und schließendem Tag</div>
+                <div class="option">C) Ein Element ist nur der öffnende Tag</div>
+                <div class="option">D) Tags sind in HTML, Elemente in CSS</div>
+            </div>
+            <div class="answer">
+                <div class="answer-label">✓ Lösung:</div>
+                <strong>B)</strong> Ein <strong>Tag</strong> ist die Markierung wie &lt;p&gt; oder &lt;/p&gt;.<br>
+                Ein <strong>Element</strong> ist das komplette Konstrukt: &lt;p&gt;Text&lt;/p&gt; (öffnendes Tag + Inhalt + schließendes Tag).<br>
+                Beispiel: Bei &lt;h1&gt;Überschrift&lt;/h1&gt; sind &lt;h1&gt; und &lt;/h1&gt; die Tags, das gesamte Konstrukt ist das h1-Element.
+            </div>
+        </div>
+
+        <!-- Frage 24: Code - Attribut vs Wert -->
+        <div class="question-block">
+            <div class="question-number">Frage 24 <span class="topic-badge">Fachbegriffe</span></div>
+            <div class="question-text">Identifiziere im folgenden Code das Attribut und den Wert:</div>
+            <div class="code-block">&lt;img src="logo.png" width="200"&gt;</div>
+            <div class="answer">
+                <div class="answer-label">✓ Lösung:</div>
+                <strong>Attribute:</strong> src, width<br>
+                <strong>Werte:</strong> "logo.png", "200"<br>
+                <br>
+                Ein <strong>Attribut</strong> ist die Eigenschaft (z.B. src, width, class).<br>
+                Der <strong>Wert</strong> ist die Zuweisung zu dieser Eigenschaft (z.B. "logo.png", "200").<br>
+                Syntax: attribut="wert"
+            </div>
+        </div>
+
+        <!-- Frage 25: Multiple Choice - Head vs Body -->
+        <div class="question-block">
+            <div class="question-number">Frage 25 <span class="topic-badge">HTML-Aufbau</span></div>
+            <div class="question-text">Welche Elemente gehören in den &lt;head&gt;-Bereich?</div>
+            <div class="options">
+                <div class="option">A) &lt;title&gt;, &lt;meta&gt;, &lt;link&gt;</div>
+                <div class="option">B) &lt;p&gt;, &lt;div&gt;, &lt;h1&gt;</div>
+                <div class="option">C) &lt;img&gt;, &lt;video&gt;, &lt;audio&gt;</div>
+                <div class="option">D) &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</div>
+            </div>
+            <div class="answer">
+                <div class="answer-label">✓ Lösung:</div>
+                <strong>A)</strong> Der &lt;head&gt; enthält <strong>Meta-Informationen</strong> über das Dokument:<br>
+                • &lt;title&gt; = Seitentitel (im Browser-Tab)<br>
+                • &lt;meta&gt; = Meta-Daten (Zeichenkodierung, Beschreibung, Keywords)<br>
+                • &lt;link&gt; = Verknüpfungen (CSS-Dateien, Favicon)<br>
+                • &lt;style&gt; = Interne CSS-Regeln<br>
+                <br>
+                Der &lt;body&gt; enthält den <strong>sichtbaren Inhalt</strong> der Webseite (Texte, Bilder, Videos, etc.).
+            </div>
+        </div>
+
+        <!-- Frage 26: Code - CSS Box Model -->
+        <div class="question-block">
+            <div class="question-number">Frage 26 <span class="topic-badge">CSS-Syntax</span></div>
+            <div class="question-text">Erkläre den Unterschied zwischen margin und padding anhand dieses Beispiels:</div>
+            <div class="code-block">div {
+    margin: 20px;
+    padding: 10px;
+    border: 2px solid black;
+}</div>
+            <div class="answer">
+                <div class="answer-label">✓ Lösung:</div>
+                <strong>margin</strong> = <strong>Außenabstand</strong> (Abstand zwischen dem Element und anderen Elementen)<br>
+                <strong>padding</strong> = <strong>Innenabstand</strong> (Abstand zwischen dem Rand und dem Inhalt)<br>
+                <strong>border</strong> = Rahmen (liegt zwischen margin und padding)<br>
+                <br>
+                <strong>Box-Model (von außen nach innen):</strong><br>
+                margin → border → padding → Inhalt
+            </div>
+        </div>
+
+        <!-- Frage 27: Multiple Choice - Semantik -->
+        <div class="question-block">
+            <div class="question-number">Frage 27 <span class="topic-badge">Semantische Elemente</span></div>
+            <div class="question-text">Welches Element ist am besten geeignet für einen eigenständigen Blogbeitrag?</div>
+            <div class="options">
+                <div class="option">A) &lt;section&gt;</div>
+                <div class="option">B) &lt;article&gt;</div>
+                <div class="option">C) &lt;div&gt;</div>
+                <div class="option">D) &lt;aside&gt;</div>
+            </div>
+            <div class="answer">
+                <div class="answer-label">✓ Lösung:</div>
+                <strong>B)</strong> &lt;article&gt; ist für <strong>eigenständige Inhalte</strong> gedacht, die auch alleine Sinn ergeben (Blogposts, Nachrichtenartikel, Forenbeiträge).<br>
+                <br>
+                <strong>Unterschiede:</strong><br>
+                • &lt;section&gt; = Thematischer Abschnitt, Teil eines größeren Ganzen<br>
+                • &lt;article&gt; = Eigenständiger, wiederverwendbarer Inhalt<br>
+                • &lt;aside&gt; = Nebenbemerkung, Sidebar, zusätzliche Info<br>
+                • &lt;div&gt; = Generischer Container ohne semantische Bedeutung
+            </div>
+        </div>
+
+        <!-- Frage 28: Lückentext - E-Mail Links -->
+        <div class="question-block">
+            <div class="question-number">Frage 28 <span class="topic-badge">Links</span></div>
+            <div class="question-text">
+                Ergänze den Code für einen E-Mail-Link:<br>
+                <div class="fill-blank">&lt;a href="<input type="text" placeholder="Protokoll">:<input type="text" placeholder="E-Mail">"&gt;Kontakt&lt;/a&gt;</div>
+            </div>
+            <div class="answer">
+                <div class="answer-label">✓ Lösung:</div>
+                &lt;a href="<strong>mailto</strong>:<strong>info@example.com</strong>"&gt;Kontakt&lt;/a&gt;<br>
+                Das <strong>mailto:</strong>-Protokoll öffnet das Standard-E-Mail-Programm mit der angegebenen Adresse.<br>
+                Erweitert: &lt;a href="mailto:info@example.com?subject=Anfrage"&gt;Kontakt&lt;/a&gt;
+            </div>
+        </div>
+
+        <!-- Frage 29: Multiple Choice - DOM & Rendering -->
+        <div class="question-block">
+            <div class="question-number">Frage 29 <span class="topic-badge">Browser-Rendering</span></div>
+            <div class="question-text">Was bedeutet "DOM" im Kontext von Webbrowsern?</div>
+            <div class="options">
+                <div class="option">A) Document Object Model</div>
+                <div class="option">B) Data Output Method</div>
+                <div class="option">C) Digital Online Media</div>
+                <div class="option">D) Display Order Management</div>
+            </div>
+            <div class="answer">
+                <div class="answer-label">✓ Lösung:</div>
+                <strong>A)</strong> DOM = <strong>Document Object Model</strong><br>
+                Der DOM ist die Baumstruktur, in die der Browser das HTML-Dokument umwandelt. Jedes HTML-Element wird zu einem Objekt (Knoten) im DOM-Baum.<br>
+                <br>
+                Der Browser:<br>
+                1. Lädt HTML-Code<br>
+                2. Parst ihn und erstellt den DOM-Baum<br>
+                3. Wendet CSS-Styles an<br>
+                4. Rendert die Seite auf dem Bildschirm
+            </div>
+        </div>
+
+        <!-- Frage 30: Code - Vollständige Tabelle -->
+        <div class="question-block">
+            <div class="question-number">Frage 30 <span class="topic-badge">Typische Prüfungsaufgabe</span></div>
+            <div class="question-text">Ordne die HTML-Elemente ihren Funktionen zu:</div>
+            <div class="code-block">Elemente: &lt;nav&gt;, &lt;header&gt;, &lt;footer&gt;, &lt;main&gt;, &lt;aside&gt;
+
+Funktionen:
+A) Hauptinhalt der Seite
+B) Kopfbereich mit Logo/Titel
+C) Navigationsmenü
+D) Fußbereich mit Copyright
+E) Sidebar mit zusätzlichen Infos</div>
+            <div class="answer">
+                <div class="answer-label">✓ Lösung:</div>
+                <strong>&lt;nav&gt;</strong> = C) Navigationsmenü<br>
+                <strong>&lt;header&gt;</strong> = B) Kopfbereich mit Logo/Titel<br>
+                <strong>&lt;footer&gt;</strong> = D) Fußbereich mit Copyright<br>
+                <strong>&lt;main&gt;</strong> = A) Hauptinhalt der Seite<br>
+                <strong>&lt;aside&gt;</strong> = E) Sidebar mit zusätzlichen Infos<br>
+                <br>
+                <strong>Merke:</strong> Diese Elemente strukturieren eine Seite <strong>semantisch</strong> (mit Bedeutung), nicht nur visuell. Sie helfen Suchmaschinen und Screenreadern, den Inhalt besser zu verstehen.
             </div>
         </div>
 

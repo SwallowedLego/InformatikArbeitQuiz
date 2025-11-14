@@ -4,33 +4,35 @@ Ein interaktives HTML/CSS-Quiz zur Vorbereitung auf die Informatik-Arbeit.
 
 ## 📚 Inhalt
 
-Das Quiz enthält **20 gemischte Fragen** zu folgenden Themen:
+Das Quiz enthält **30 gemischte Fragen** zu folgenden Themen:
 
 - **HTML-Aufbau**: Grundstruktur von HTML-Dokumenten
 - **Tags & Attribute**: Wichtige HTML-Tags und ihre Attribute
 - **Typische Fehler**: Häufige Fehlerquellen in HTML/CSS
 - **Überschriften & Absätze**: Strukturierung von Texten
 - **Listen**: Geordnete und ungeordnete Listen
-- **Semantische Elemente**: HTML5 Semantic Tags (header, nav, main, footer, article)
-- **Links & Bilder**: Verknüpfungen und Bildintegration
-- **CSS-Syntax**: Grundlegende CSS-Regeln und -Selektoren
+- **Semantische Elemente**: HTML5 Semantic Tags (header, nav, main, footer, article, aside)
+- **Media-Elemente**: Video und Audio-Integration mit wichtigen Attributen
+- **Links & Bilder**: Verknüpfungen und Bildintegration (intern, extern, E-Mail-Links)
+- **CSS-Syntax**: Grundlegende CSS-Regeln und -Selektoren, Box-Model (margin, padding, border)
 - **Farben**: Verschiedene Farbdefinitionsarten in CSS
 - **Block vs. Inline**: Unterschiede zwischen Block- und Inline-Elementen
 - **CSS-Einbindung**: Inline, intern und extern (Priorität und Verwendung)
-- **Fachbegriffe**: Wichtige Begriffe und Abkürzungen
+- **Fachbegriffe**: Wichtige Begriffe und Abkürzungen (Element vs. Tag, Attribut vs. Wert, Head vs. Body, DOM)
 
 ## 🎯 Fragetypen
 
-Das Quiz beinhaltet drei verschiedene Fragetypen:
+Das Quiz beinhaltet verschiedene Fragetypen:
 
 1. **Multiple Choice**: Auswahl der richtigen Antwort aus vier Optionen
 2. **Lückentext**: Ergänzen fehlender Begriffe oder Code-Bestandteile
 3. **Code-Analyse**: Fehler finden und verstehen
+4. **Zuordnungsaufgaben**: Elemente ihren Funktionen zuordnen
 
 ## 🚀 Verwendung
 
 1. Öffne die Datei `index.html` in einem Webbrowser
-2. Beantworte die 20 Fragen
+2. Beantworte die 30 Fragen
 3. Klicke auf "📚 Lösungen anzeigen/verbergen" um alle Lösungen ein- oder auszublenden
 4. Bei Lückentext-Fragen kannst du Enter drücken, um die Lösung für die jeweilige Frage anzuzeigen
 
