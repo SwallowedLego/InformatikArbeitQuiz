@@ -5,721 +5,721 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML/CSS Quiz - Arbeitsvorbereitung</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            padding: 40px;
-        }
-
-        h1 {
-            color: #667eea;
-            text-align: center;
-            margin-bottom: 10px;
-            font-size: 2.5em;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 1.1em;
-        }
-
-        .question-block {
-            background: #f8f9fa;
-            border-left: 4px solid #667eea;
-            padding: 20px;
-            margin-bottom: 25px;
-            border-radius: 5px;
-            transition: transform 0.2s;
-        }
-
-        .question-block:hover {
-            transform: translateX(5px);
-        }
-
-        .question-number {
-            color: #667eea;
-            font-weight: bold;
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-
-        .question-text {
-            font-size: 1.1em;
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-
-        .options {
-            margin-left: 20px;
-        }
-
-        .option {
-            margin: 8px 0;
-            padding: 10px;
-            background: white;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .option:hover {
-            background: #e9ecef;
-        }
-
-        .code-block {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 15px;
-            border-radius: 5px;
-            font-family: 'Courier New', monospace;
-            margin: 10px 0;
-            overflow-x: auto;
-        }
-
-        .answer {
-            background: #d4edda;
-            border: 1px solid #c3e6cb;
-            color: #155724;
-            padding: 15px;
-            margin-top: 15px;
-            border-radius: 5px;
-            display: none;
-        }
-
-        .answer.visible {
-            display: block;
-        }
-
-        .answer-label {
-            font-weight: bold;
-            color: #0f4229;
-            margin-bottom: 8px;
-        }
-
-        .show-answers-btn {
-            display: block;
-            margin: 30px auto;
-            padding: 15px 40px;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 25px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: background 0.3s;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .show-answers-btn:hover {
-            background: #5568d3;
-        }
-
-        .tag {
-            background: #e7f3ff;
-            color: #0066cc;
-            padding: 3px 8px;
-            border-radius: 3px;
-            font-size: 0.85em;
-            font-weight: bold;
-            display: inline-block;
-            margin-left: 10px;
-        }
-
-        input[type="text"] {
-            border: 2px solid #ddd;
-            padding: 8px 12px;
-            border-radius: 5px;
-            font-size: 1em;
-            width: 200px;
-            transition: border-color 0.3s;
-        }
-
-        input[type="text"]:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .fill-blank {
-            display: inline-block;
-            margin: 0 5px;
-        }
-
-        .topic-badge {
-            display: inline-block;
-            background: #764ba2;
-            color: white;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 0.75em;
-            margin-left: 5px;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; min-height: 100vh; }
+        .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 15px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); padding: 40px; }
+        h1 { color: #667eea; text-align: center; margin-bottom: 10px; font-size: 2.5em; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 30px; font-size: 1.1em; }
+        .progress-bar { width: 100%; height: 10px; background: #e9ecef; border-radius: 5px; margin-bottom: 30px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #667eea, #764ba2); transition: width 0.3s; border-radius: 5px; }
+        .progress-text { text-align: center; color: #666; margin-bottom: 20px; font-size: 0.9em; font-weight: bold; }
+        .question-block { background: #f8f9fa; border-left: 4px solid #667eea; padding: 30px; margin-bottom: 25px; border-radius: 5px; display: none; }
+        .question-block.active { display: block; animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .question-number { color: #667eea; font-weight: bold; font-size: 1.2em; margin-bottom: 10px; }
+        .question-text { font-size: 1.1em; margin-bottom: 20px; line-height: 1.6; }
+        .options { margin-left: 0; }
+        .option { margin: 12px 0; padding: 15px; background: white; border: 2px solid #ddd; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+        .option:hover { background: #f0f0f0; border-color: #667eea; }
+        .option.selected { background: #e7f3ff; border-color: #667eea; font-weight: bold; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; font-family: 'Courier New', monospace; margin: 10px 0; overflow-x: auto; white-space: pre-wrap; }
+        .answer-feedback { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; padding: 15px; margin-top: 20px; border-radius: 5px; display: none; }
+        .answer-feedback.visible { display: block; }
+        .answer-label { font-weight: bold; margin-bottom: 8px; }
+        input[type="text"] { border: 2px solid #ddd; padding: 10px 15px; border-radius: 5px; font-size: 1em; min-width: 150px; transition: border-color 0.3s; margin: 5px; }
+        input[type="text"]:focus { outline: none; border-color: #667eea; }
+        input[type="text"].correct { border-color: #28a745; background: #d4edda; }
+        input[type="text"].incorrect { border-color: #dc3545; background: #f8d7da; }
+        .fill-blank { display: inline-block; margin: 5px 0; }
+        .topic-badge { display: inline-block; background: #764ba2; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.85em; margin-left: 8px; }
+        .navigation-buttons { display: flex; justify-content: space-between; margin-top: 30px; gap: 15px; }
+        .btn { padding: 12px 30px; background: #667eea; color: white; border: none; border-radius: 8px; font-size: 1em; cursor: pointer; transition: background 0.3s; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3); }
+        .btn:hover:not(:disabled) { background: #5568d3; }
+        .btn:disabled { background: #ccc; cursor: not-allowed; box-shadow: none; }
+        .btn-secondary { background: #6c757d; }
+        .btn-secondary:hover:not(:disabled) { background: #5a6268; }
+        .btn-primary { background: #28a745; }
+        .btn-primary:hover:not(:disabled) { background: #218838; }
+        .results-screen { display: none; text-align: center; }
+        .results-screen.active { display: block; }
+        .grade-display { font-size: 5em; font-weight: bold; color: #667eea; margin: 30px 0; }
+        .grade-text { font-size: 2em; color: #764ba2; margin-bottom: 20px; }
+        .score-details { background: #f8f9fa; padding: 25px; border-radius: 10px; margin: 20px 0; }
+        .score-details p { font-size: 1.2em; margin: 10px 0; color: #333; }
+        .restart-btn { margin-top: 30px; padding: 15px 50px; font-size: 1.2em; }
+        .start-screen { text-align: center; padding: 40px 20px; }
+        .start-screen h2 { color: #667eea; font-size: 2em; margin-bottom: 20px; }
+        .start-screen p { font-size: 1.1em; color: #666; margin-bottom: 15px; line-height: 1.8; }
+        .start-btn { margin-top: 30px; padding: 15px 50px; font-size: 1.2em; }
+        .quiz-content { display: none; }
+        .quiz-content.active { display: block; }
+        .check-answer-btn { margin-top: 15px; padding: 10px 25px; background: #667eea; color: white; border: none; border-radius: 8px; font-size: 0.95em; cursor: pointer; transition: background 0.3s; }
+        .check-answer-btn:hover { background: #5568d3; }
+        .check-answer-btn:disabled { background: #ccc; cursor: not-allowed; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>📝 HTML/CSS Quiz</h1>
         <p class="subtitle">Vorbereitung auf die Informatik-Arbeit • 30 Fragen</p>
-
-        <!-- Frage 1: Multiple Choice - HTML Struktur -->
-        <div class="question-block">
-            <div class="question-number">Frage 1 <span class="topic-badge">HTML-Aufbau</span></div>
-            <div class="question-text">Welches ist die korrekte Grundstruktur eines HTML-Dokuments?</div>
-            <div class="options">
-                <div class="option">A) &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;</div>
-                <div class="option">B) &lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;</div>
-                <div class="option">C) &lt;html&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;</div>
-                <div class="option">D) &lt;head&gt;&lt;body&gt;&lt;/body&gt;&lt;/head&gt;</div>
-            </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                <strong>B)</strong> Die korrekte Struktur beginnt mit &lt;!DOCTYPE html&gt;, gefolgt von &lt;html&gt;, dann &lt;head&gt; und &lt;body&gt; Bereichen. Der DOCTYPE definiert den HTML5-Standard.
+        <div class="start-screen" id="startScreen">
+            <h2>Willkommen zum interaktiven Quiz!</h2>
+            <p>📚 Dieses Quiz enthält 30 Fragen zu HTML und CSS</p>
+            <p>✅ Beantworte jede Frage nacheinander</p>
+            <p>🎯 Am Ende erhältst du eine Note nach dem deutschen Notensystem</p>
+            <p>⏱️ Nimm dir Zeit und lies jede Frage sorgfältig durch</p>
+            <button class="btn btn-primary start-btn" onclick="startQuiz()">Quiz starten</button>
+        </div>
+        <div class="quiz-content" id="quizContent">
+            <div class="progress-text">Frage <span id="currentQuestion">1</span> von <span id="totalQuestions">30</span></div>
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+            <div id="questionsContainer"></div>
+            <div class="navigation-buttons">
+                <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" disabled>← Zurück</button>
+                <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>Weiter →</button>
+                <button class="btn btn-primary" id="finishBtn" onclick="finishQuiz()" style="display: none;">Quiz beenden</button>
             </div>
         </div>
-
-        <!-- Frage 2: Lückentext - Meta Tag -->
-        <div class="question-block">
-            <div class="question-number">Frage 2 <span class="topic-badge">Tags/Attribute</span></div>
-            <div class="question-text">
-                Ergänze: Das Meta-Tag für die Zeichenkodierung lautet:<br>
-                <div class="fill-blank">&lt;meta <input type="text" placeholder="Attribut"> = "<input type="text" placeholder="Wert">"&gt;</div>
+        <div class="results-screen" id="resultsScreen">
+            <h2>🎉 Quiz abgeschlossen!</h2>
+            <div class="grade-display" id="gradeDisplay"></div>
+            <div class="grade-text" id="gradeText"></div>
+            <div class="score-details">
+                <p><strong>Richtige Antworten:</strong> <span id="correctAnswers"></span> von 30</p>
+                <p><strong>Prozent:</strong> <span id="percentage"></span>%</p>
             </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                &lt;meta <strong>charset</strong> = "<strong>UTF-8</strong>"&gt; - Das charset-Attribut definiert die Zeichenkodierung des Dokuments.
-            </div>
-        </div>
-
-        <!-- Frage 3: Multiple Choice - Semantische Elemente -->
-        <div class="question-block">
-            <div class="question-number">Frage 3 <span class="topic-badge">Semantische Elemente</span></div>
-            <div class="question-text">Welches HTML5-Element sollte für den Hauptinhalt einer Seite verwendet werden?</div>
-            <div class="options">
-                <div class="option">A) &lt;div id="main"&gt;</div>
-                <div class="option">B) &lt;main&gt;</div>
-                <div class="option">C) &lt;content&gt;</div>
-                <div class="option">D) &lt;section&gt;</div>
-            </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                <strong>B)</strong> Das &lt;main&gt;-Element ist das semantische HTML5-Element für den Hauptinhalt. Es sollte nur einmal pro Seite verwendet werden.
-            </div>
-        </div>
-
-        <!-- Frage 4: Code - Typische Fehler -->
-        <div class="question-block">
-            <div class="question-number">Frage 4 <span class="topic-badge">Typische Fehler</span></div>
-            <div class="question-text">Finde den Fehler in diesem Code:</div>
-            <div class="code-block">&lt;img src="bild.jpg" alt="Ein Bild"&gt;&lt;/img&gt;</div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                Das &lt;img&gt;-Tag ist ein <strong>selbstschließendes Tag</strong> und benötigt keinen schließenden Tag. Korrekt: &lt;img src="bild.jpg" alt="Ein Bild"&gt; oder &lt;img src="bild.jpg" alt="Ein Bild" /&gt;
-            </div>
-        </div>
-
-        <!-- Frage 5: Multiple Choice - Überschriften -->
-        <div class="question-block">
-            <div class="question-number">Frage 5 <span class="topic-badge">Überschriften</span></div>
-            <div class="question-text">Welche Überschriften-Hierarchie ist korrekt?</div>
-            <div class="options">
-                <div class="option">A) h1 → h3 → h2 → h4</div>
-                <div class="option">B) h1 → h2 → h3 → h4</div>
-                <div class="option">C) h6 → h5 → h4 → h3</div>
-                <div class="option">D) Man kann beliebig springen</div>
-            </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                <strong>B)</strong> Überschriften sollten hierarchisch von h1 (wichtigste) bis h6 (am wenigsten wichtig) verwendet werden, ohne Ebenen zu überspringen.
-            </div>
-        </div>
-
-        <!-- Frage 6: Lückentext - Listen -->
-        <div class="question-block">
-            <div class="question-number">Frage 6 <span class="topic-badge">Listen</span></div>
-            <div class="question-text">
-                Ergänze die Tags für eine ungeordnete Liste:<br>
-                <div class="fill-blank">&lt;<input type="text" placeholder="Tag">&gt;</div><br>
-                <div class="fill-blank" style="margin-left: 20px;">&lt;<input type="text" placeholder="Tag">&gt;Punkt 1&lt;/<input type="text" placeholder="Tag">&gt;</div><br>
-                <div class="fill-blank">&lt;/<input type="text" placeholder="Tag">&gt;</div>
-            </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                &lt;<strong>ul</strong>&gt;<br>
-                &nbsp;&nbsp;&lt;<strong>li</strong>&gt;Punkt 1&lt;/<strong>li</strong>&gt;<br>
-                &lt;/<strong>ul</strong>&gt;<br>
-                ul = unordered list (ungeordnete Liste), li = list item (Listenelement)
-            </div>
-        </div>
-
-        <!-- Frage 7: Multiple Choice - Links -->
-        <div class="question-block">
-            <div class="question-number">Frage 7 <span class="topic-badge">Links</span></div>
-            <div class="question-text">Welches Attribut wird verwendet, um einen Link in einem neuen Tab zu öffnen?</div>
-            <div class="options">
-                <div class="option">A) newtab="true"</div>
-                <div class="option">B) target="_blank"</div>
-                <div class="option">C) open="new"</div>
-                <div class="option">D) window="new"</div>
-            </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                <strong>B)</strong> Das target="_blank" Attribut öffnet den Link in einem neuen Tab/Fenster. Beispiel: &lt;a href="url" target="_blank"&gt;Link&lt;/a&gt;
-            </div>
-        </div>
-
-        <!-- Frage 8: Code - CSS Syntax -->
-        <div class="question-block">
-            <div class="question-number">Frage 8 <span class="topic-badge">CSS-Syntax</span></div>
-            <div class="question-text">Korrigiere diese CSS-Regel:</div>
-            <div class="code-block">p {
-    color = red;
-    font-size: 16px
-}</div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                <strong>Fehler:</strong><br>
-                1. "color = red" muss "color: red;" sein (Doppelpunkt statt Gleichheitszeichen)<br>
-                2. Nach "16px" fehlt ein Semikolon<br>
-                <strong>Korrekt:</strong><br>
-                <div class="code-block">p {
-    color: red;
-    font-size: 16px;
-}</div>
-            </div>
-        </div>
-
-        <!-- Frage 9: Multiple Choice - CSS Einbindung -->
-        <div class="question-block">
-            <div class="question-number">Frage 9 <span class="topic-badge">CSS-Einbindung</span></div>
-            <div class="question-text">Welche CSS-Einbindungsmethode hat die höchste Priorität?</div>
-            <div class="options">
-                <div class="option">A) Externe CSS-Datei (extern)</div>
-                <div class="option">B) &lt;style&gt;-Tag im &lt;head&gt; (intern)</div>
-                <div class="option">C) style-Attribut im HTML-Tag (inline)</div>
-                <div class="option">D) Alle haben gleiche Priorität</div>
-            </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                <strong>C)</strong> Inline-Styles (style-Attribut) haben die höchste Priorität, gefolgt von internen Styles (&lt;style&gt;-Tag) und externen CSS-Dateien. Dies nennt man die "CSS-Kaskade".
-            </div>
-        </div>
-
-        <!-- Frage 10: Lückentext - Block vs Inline -->
-        <div class="question-block">
-            <div class="question-number">Frage 10 <span class="topic-badge">Block/Inline</span></div>
-            <div class="question-text">
-                &lt;div&gt; ist ein <input type="text" placeholder="Block oder Inline?">-Element,<br>
-                &lt;span&gt; ist ein <input type="text" placeholder="Block oder Inline?">-Element.
-            </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                &lt;div&gt; ist ein <strong>Block</strong>-Element (nimmt die ganze Breite ein, neue Zeile),<br>
-                &lt;span&gt; ist ein <strong>Inline</strong>-Element (nur so breit wie nötig, keine neue Zeile).
-            </div>
-        </div>
-
-        <!-- Frage 11: Multiple Choice - Farben -->
-        <div class="question-block">
-            <div class="question-number">Frage 11 <span class="topic-badge">Farben</span></div>
-            <div class="question-text">Welche Farbangabe ist NICHT gültig in CSS?</div>
-            <div class="options">
-                <div class="option">A) color: red;</div>
-                <div class="option">B) color: #FF0000;</div>
-                <div class="option">C) color: rgb(255, 0, 0);</div>
-                <div class="option">D) color: (255-0-0);</div>
-            </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                <strong>D)</strong> Die Syntax (255-0-0) ist ungültig. Gültige Farbangaben sind: Farbnamen (red), Hex (#FF0000), RGB (rgb(255, 0, 0)), RGBA, HSL, HSLA.
-            </div>
-        </div>
-
-        <!-- Frage 12: Code - Attribute -->
-        <div class="question-block">
-            <div class="question-number">Frage 12 <span class="topic-badge">Attribute</span></div>
-            <div class="question-text">Vervollständige den Link mit allen wichtigen Attributen:</div>
-            <div class="code-block">&lt;a ___="https://example.com" ___="Beispielseite"&gt;Klick hier&lt;/a&gt;</div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                &lt;a <strong>href</strong>="https://example.com" <strong>title</strong>="Beispielseite"&gt;Klick hier&lt;/a&gt;<br>
-                <strong>href</strong> = Hyperlink-Referenz (Ziel-URL)<br>
-                <strong>title</strong> = Tooltip-Text beim Hovern
-            </div>
-        </div>
-
-        <!-- Frage 13: Multiple Choice - Absätze -->
-        <div class="question-block">
-            <div class="question-number">Frage 13 <span class="topic-badge">Absätze</span></div>
-            <div class="question-text">Welches Tag wird für einen Absatz verwendet?</div>
-            <div class="options">
-                <div class="option">A) &lt;paragraph&gt;</div>
-                <div class="option">B) &lt;p&gt;</div>
-                <div class="option">C) &lt;text&gt;</div>
-                <div class="option">D) &lt;para&gt;</div>
-            </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                <strong>B)</strong> Das &lt;p&gt;-Tag (paragraph) wird für Textabsätze verwendet. Es ist ein Block-Element mit automatischem Abstand oben und unten.
-            </div>
-        </div>
-
-        <!-- Frage 14: Lückentext - Externe CSS -->
-        <div class="question-block">
-            <div class="question-number">Frage 14 <span class="topic-badge">CSS-Einbindung</span></div>
-            <div class="question-text">
-                Ergänze den Code zum Einbinden einer externen CSS-Datei im &lt;head&gt;:<br>
-                <div class="fill-blank">&lt;<input type="text" placeholder="Tag"> rel="<input type="text" placeholder="Wert">" href="styles.css"&gt;</div>
-            </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                &lt;<strong>link</strong> rel="<strong>stylesheet</strong>" href="styles.css"&gt;<br>
-                Das &lt;link&gt;-Tag mit rel="stylesheet" bindet externe CSS-Dateien ein.
-            </div>
-        </div>
-
-        <!-- Frage 15: Code - Typische Fehler -->
-        <div class="question-block">
-            <div class="question-number">Frage 15 <span class="topic-badge">Typische Fehler</span></div>
-            <div class="question-text">Was ist falsch an diesem Code?</div>
-            <div class="code-block">&lt;p&gt;Dies ist ein &lt;strong&gt;wichtiger&lt;/p&gt;&lt;/strong&gt; Text.</div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                Die Tags sind <strong>falsch verschachtelt</strong>. Das &lt;strong&gt;-Tag wurde geöffnet, bevor &lt;p&gt; geschlossen wurde.<br>
-                <strong>Korrekt:</strong> &lt;p&gt;Dies ist ein &lt;strong&gt;wichtiger&lt;/strong&gt; Text.&lt;/p&gt;<br>
-                Regel: "First opened, last closed" - zuerst geöffnete Tags müssen zuletzt geschlossen werden.
-            </div>
-        </div>
-
-        <!-- Frage 16: Multiple Choice - Fachbegriffe -->
-        <div class="question-block">
-            <div class="question-number">Frage 16 <span class="topic-badge">Fachbegriffe</span></div>
-            <div class="question-text">Was bedeutet "CSS" als Abkürzung?</div>
-            <div class="options">
-                <div class="option">A) Computer Style Sheets</div>
-                <div class="option">B) Cascading Style Sheets</div>
-                <div class="option">C) Creative Style System</div>
-                <div class="option">D) Coded Style Syntax</div>
-            </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                <strong>B)</strong> CSS = <strong>Cascading Style Sheets</strong> (Kaskadierende Stilvorlagen). "Cascading" bezieht sich auf die Art, wie Stilregeln vererbt und überschrieben werden.
-            </div>
-        </div>
-
-        <!-- Frage 17: Code - Semantische Elemente -->
-        <div class="question-block">
-            <div class="question-number">Frage 17 <span class="topic-badge">Semantische Elemente</span></div>
-            <div class="question-text">Ordne die semantischen HTML5-Elemente ihrer Bedeutung zu:</div>
-            <div class="options">
-                <div class="option">1. &lt;header&gt;</div>
-                <div class="option">2. &lt;nav&gt;</div>
-                <div class="option">3. &lt;footer&gt;</div>
-                <div class="option">4. &lt;article&gt;</div>
-            </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                <strong>1. &lt;header&gt;</strong> = Kopfbereich der Seite/Section (Logo, Titel)<br>
-                <strong>2. &lt;nav&gt;</strong> = Navigationsbereich (Menü, Links)<br>
-                <strong>3. &lt;footer&gt;</strong> = Fußbereich (Copyright, Kontakt)<br>
-                <strong>4. &lt;article&gt;</strong> = Eigenständiger Inhalt (Blogpost, Artikel)
-            </div>
-        </div>
-
-        <!-- Frage 18: Multiple Choice - Bilder -->
-        <div class="question-block">
-            <div class="question-number">Frage 18 <span class="topic-badge">Bilder</span></div>
-            <div class="question-text">Welches Attribut ist beim &lt;img&gt;-Tag ZWINGEND erforderlich?</div>
-            <div class="options">
-                <div class="option">A) width und height</div>
-                <div class="option">B) src und alt</div>
-                <div class="option">C) title</div>
-                <div class="option">D) class</div>
-            </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                <strong>B)</strong> <strong>src</strong> (Bildquelle) und <strong>alt</strong> (Alternativtext) sind erforderlich. Der alt-Text ist wichtig für Barrierefreiheit und wird angezeigt, wenn das Bild nicht geladen werden kann.
-            </div>
-        </div>
-
-        <!-- Frage 19: Lückentext - Listen -->
-        <div class="question-block">
-            <div class="question-number">Frage 19 <span class="topic-badge">Listen</span></div>
-            <div class="question-text">
-                Eine geordnete Liste wird mit dem Tag <input type="text" placeholder="Tag"> erstellt,<br>
-                während eine ungeordnete Liste das Tag <input type="text" placeholder="Tag"> verwendet.
-            </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                Eine geordnete Liste wird mit dem Tag <strong>&lt;ol&gt;</strong> (ordered list) erstellt,<br>
-                während eine ungeordnete Liste das Tag <strong>&lt;ul&gt;</strong> (unordered list) verwendet.<br>
-                Beide verwenden &lt;li&gt; für die einzelnen Listenelemente.
-            </div>
-        </div>
-
-        <!-- Frage 20: Multiple Choice - CSS Selektoren -->
-        <div class="question-block">
-            <div class="question-number">Frage 20 <span class="topic-badge">CSS-Syntax</span></div>
-            <div class="question-text">Welcher CSS-Selektor wählt ein Element mit der ID "header" aus?</div>
-            <div class="options">
-                <div class="option">A) .header { }</div>
-                <div class="option">B) #header { }</div>
-                <div class="option">C) header { }</div>
-                <div class="option">D) *header { }</div>
-            </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                <strong>B)</strong> <strong>#header { }</strong> wählt ein Element mit id="header" aus.<br>
-                <strong>.</strong> = Klassen-Selektor (class)<br>
-                <strong>#</strong> = ID-Selektor (id)<br>
-                Ohne Symbol = Element-Selektor (Tag-Name)<br>
-                <strong>*</strong> = Universal-Selektor (alle Elemente)
-            </div>
-        </div>
-
-        <!-- Frage 21: Multiple Choice - Video Element -->
-        <div class="question-block">
-            <div class="question-number">Frage 21 <span class="topic-badge">Media-Elemente</span></div>
-            <div class="question-text">Welches Attribut ermöglicht es, dass ein Video automatisch abgespielt wird?</div>
-            <div class="options">
-                <div class="option">A) play="auto"</div>
-                <div class="option">B) autoplay</div>
-                <div class="option">C) auto="true"</div>
-                <div class="option">D) start="auto"</div>
-            </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                <strong>B)</strong> Das <strong>autoplay</strong>-Attribut startet das Video automatisch beim Laden der Seite.<br>
-                Beispiel: &lt;video src="video.mp4" autoplay controls&gt;&lt;/video&gt;<br>
-                Weitere wichtige Video-Attribute: <strong>controls</strong> (Steuerungselemente), <strong>loop</strong> (Wiederholen), <strong>muted</strong> (Stummschaltung).
-            </div>
-        </div>
-
-        <!-- Frage 22: Lückentext - Audio Element -->
-        <div class="question-block">
-            <div class="question-number">Frage 22 <span class="topic-badge">Media-Elemente</span></div>
-            <div class="question-text">
-                Ergänze den Code für ein Audio-Element mit Steuerungselementen:<br>
-                <div class="fill-blank">&lt;<input type="text" placeholder="Tag"> src="musik.mp3" <input type="text" placeholder="Attribut">&gt;&lt;/<input type="text" placeholder="Tag">&gt;</div>
-            </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                &lt;<strong>audio</strong> src="musik.mp3" <strong>controls</strong>&gt;&lt;/<strong>audio</strong>&gt;<br>
-                Das <strong>controls</strong>-Attribut zeigt Play-, Pause- und Lautstärke-Buttons an. Ohne dieses Attribut wäre das Audio nicht steuerbar.
-            </div>
-        </div>
-
-        <!-- Frage 23: Multiple Choice - Element vs Tag -->
-        <div class="question-block">
-            <div class="question-number">Frage 23 <span class="topic-badge">Fachbegriffe</span></div>
-            <div class="question-text">Was ist der Unterschied zwischen einem "Tag" und einem "Element"?</div>
-            <div class="options">
-                <div class="option">A) Es gibt keinen Unterschied</div>
-                <div class="option">B) Ein Tag ist die Auszeichnung, ein Element besteht aus öffnendem Tag, Inhalt und schließendem Tag</div>
-                <div class="option">C) Ein Element ist nur der öffnende Tag</div>
-                <div class="option">D) Tags sind in HTML, Elemente in CSS</div>
-            </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                <strong>B)</strong> Ein <strong>Tag</strong> ist die Markierung wie &lt;p&gt; oder &lt;/p&gt;.<br>
-                Ein <strong>Element</strong> ist das komplette Konstrukt: &lt;p&gt;Text&lt;/p&gt; (öffnendes Tag + Inhalt + schließendes Tag).<br>
-                Beispiel: Bei &lt;h1&gt;Überschrift&lt;/h1&gt; sind &lt;h1&gt; und &lt;/h1&gt; die Tags, das gesamte Konstrukt ist das h1-Element.
-            </div>
-        </div>
-
-        <!-- Frage 24: Code - Attribut vs Wert -->
-        <div class="question-block">
-            <div class="question-number">Frage 24 <span class="topic-badge">Fachbegriffe</span></div>
-            <div class="question-text">Identifiziere im folgenden Code das Attribut und den Wert:</div>
-            <div class="code-block">&lt;img src="logo.png" width="200"&gt;</div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                <strong>Attribute:</strong> src, width<br>
-                <strong>Werte:</strong> "logo.png", "200"<br>
-                <br>
-                Ein <strong>Attribut</strong> ist die Eigenschaft (z.B. src, width, class).<br>
-                Der <strong>Wert</strong> ist die Zuweisung zu dieser Eigenschaft (z.B. "logo.png", "200").<br>
-                Syntax: attribut="wert"
-            </div>
-        </div>
-
-        <!-- Frage 25: Multiple Choice - Head vs Body -->
-        <div class="question-block">
-            <div class="question-number">Frage 25 <span class="topic-badge">HTML-Aufbau</span></div>
-            <div class="question-text">Welche Elemente gehören in den &lt;head&gt;-Bereich?</div>
-            <div class="options">
-                <div class="option">A) &lt;title&gt;, &lt;meta&gt;, &lt;link&gt;</div>
-                <div class="option">B) &lt;p&gt;, &lt;div&gt;, &lt;h1&gt;</div>
-                <div class="option">C) &lt;img&gt;, &lt;video&gt;, &lt;audio&gt;</div>
-                <div class="option">D) &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</div>
-            </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                <strong>A)</strong> Der &lt;head&gt; enthält <strong>Meta-Informationen</strong> über das Dokument:<br>
-                • &lt;title&gt; = Seitentitel (im Browser-Tab)<br>
-                • &lt;meta&gt; = Meta-Daten (Zeichenkodierung, Beschreibung, Keywords)<br>
-                • &lt;link&gt; = Verknüpfungen (CSS-Dateien, Favicon)<br>
-                • &lt;style&gt; = Interne CSS-Regeln<br>
-                <br>
-                Der &lt;body&gt; enthält den <strong>sichtbaren Inhalt</strong> der Webseite (Texte, Bilder, Videos, etc.).
-            </div>
-        </div>
-
-        <!-- Frage 26: Code - CSS Box Model -->
-        <div class="question-block">
-            <div class="question-number">Frage 26 <span class="topic-badge">CSS-Syntax</span></div>
-            <div class="question-text">Erkläre den Unterschied zwischen margin und padding anhand dieses Beispiels:</div>
-            <div class="code-block">div {
-    margin: 20px;
-    padding: 10px;
-    border: 2px solid black;
-}</div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                <strong>margin</strong> = <strong>Außenabstand</strong> (Abstand zwischen dem Element und anderen Elementen)<br>
-                <strong>padding</strong> = <strong>Innenabstand</strong> (Abstand zwischen dem Rand und dem Inhalt)<br>
-                <strong>border</strong> = Rahmen (liegt zwischen margin und padding)<br>
-                <br>
-                <strong>Box-Model (von außen nach innen):</strong><br>
-                margin → border → padding → Inhalt
-            </div>
-        </div>
-
-        <!-- Frage 27: Multiple Choice - Semantik -->
-        <div class="question-block">
-            <div class="question-number">Frage 27 <span class="topic-badge">Semantische Elemente</span></div>
-            <div class="question-text">Welches Element ist am besten geeignet für einen eigenständigen Blogbeitrag?</div>
-            <div class="options">
-                <div class="option">A) &lt;section&gt;</div>
-                <div class="option">B) &lt;article&gt;</div>
-                <div class="option">C) &lt;div&gt;</div>
-                <div class="option">D) &lt;aside&gt;</div>
-            </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                <strong>B)</strong> &lt;article&gt; ist für <strong>eigenständige Inhalte</strong> gedacht, die auch alleine Sinn ergeben (Blogposts, Nachrichtenartikel, Forenbeiträge).<br>
-                <br>
-                <strong>Unterschiede:</strong><br>
-                • &lt;section&gt; = Thematischer Abschnitt, Teil eines größeren Ganzen<br>
-                • &lt;article&gt; = Eigenständiger, wiederverwendbarer Inhalt<br>
-                • &lt;aside&gt; = Nebenbemerkung, Sidebar, zusätzliche Info<br>
-                • &lt;div&gt; = Generischer Container ohne semantische Bedeutung
-            </div>
-        </div>
-
-        <!-- Frage 28: Lückentext - E-Mail Links -->
-        <div class="question-block">
-            <div class="question-number">Frage 28 <span class="topic-badge">Links</span></div>
-            <div class="question-text">
-                Ergänze den Code für einen E-Mail-Link:<br>
-                <div class="fill-blank">&lt;a href="<input type="text" placeholder="Protokoll">:<input type="text" placeholder="E-Mail">"&gt;Kontakt&lt;/a&gt;</div>
-            </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                &lt;a href="<strong>mailto</strong>:<strong>info@example.com</strong>"&gt;Kontakt&lt;/a&gt;<br>
-                Das <strong>mailto:</strong>-Protokoll öffnet das Standard-E-Mail-Programm mit der angegebenen Adresse.<br>
-                Erweitert: &lt;a href="mailto:info@example.com?subject=Anfrage"&gt;Kontakt&lt;/a&gt;
-            </div>
-        </div>
-
-        <!-- Frage 29: Multiple Choice - DOM & Rendering -->
-        <div class="question-block">
-            <div class="question-number">Frage 29 <span class="topic-badge">Browser-Rendering</span></div>
-            <div class="question-text">Was bedeutet "DOM" im Kontext von Webbrowsern?</div>
-            <div class="options">
-                <div class="option">A) Document Object Model</div>
-                <div class="option">B) Data Output Method</div>
-                <div class="option">C) Digital Online Media</div>
-                <div class="option">D) Display Order Management</div>
-            </div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                <strong>A)</strong> DOM = <strong>Document Object Model</strong><br>
-                Der DOM ist die Baumstruktur, in die der Browser das HTML-Dokument umwandelt. Jedes HTML-Element wird zu einem Objekt (Knoten) im DOM-Baum.<br>
-                <br>
-                Der Browser:<br>
-                1. Lädt HTML-Code<br>
-                2. Parst ihn und erstellt den DOM-Baum<br>
-                3. Wendet CSS-Styles an<br>
-                4. Rendert die Seite auf dem Bildschirm
-            </div>
-        </div>
-
-        <!-- Frage 30: Code - Vollständige Tabelle -->
-        <div class="question-block">
-            <div class="question-number">Frage 30 <span class="topic-badge">Typische Prüfungsaufgabe</span></div>
-            <div class="question-text">Ordne die HTML-Elemente ihren Funktionen zu:</div>
-            <div class="code-block">Elemente: &lt;nav&gt;, &lt;header&gt;, &lt;footer&gt;, &lt;main&gt;, &lt;aside&gt;
-
-Funktionen:
-A) Hauptinhalt der Seite
-B) Kopfbereich mit Logo/Titel
-C) Navigationsmenü
-D) Fußbereich mit Copyright
-E) Sidebar mit zusätzlichen Infos</div>
-            <div class="answer">
-                <div class="answer-label">✓ Lösung:</div>
-                <strong>&lt;nav&gt;</strong> = C) Navigationsmenü<br>
-                <strong>&lt;header&gt;</strong> = B) Kopfbereich mit Logo/Titel<br>
-                <strong>&lt;footer&gt;</strong> = D) Fußbereich mit Copyright<br>
-                <strong>&lt;main&gt;</strong> = A) Hauptinhalt der Seite<br>
-                <strong>&lt;aside&gt;</strong> = E) Sidebar mit zusätzlichen Infos<br>
-                <br>
-                <strong>Merke:</strong> Diese Elemente strukturieren eine Seite <strong>semantisch</strong> (mit Bedeutung), nicht nur visuell. Sie helfen Suchmaschinen und Screenreadern, den Inhalt besser zu verstehen.
-            </div>
-        </div>
-
-        <button class="show-answers-btn" onclick="toggleAnswers()">📚 Lösungen anzeigen/verbergen</button>
-
-        <div style="text-align: center; margin-top: 30px; color: #666; font-size: 0.9em;">
-            <p>Viel Erfolg bei der Arbeit! 🎓</p>
+            <button class="btn btn-primary restart-btn" onclick="restartQuiz()">Quiz wiederholen</button>
         </div>
     </div>
-
     <script>
-        let answersVisible = false;
+const questions = [
+    {
+        type: 'multiple',
+        number: 1,
+        topic: 'HTML-Aufbau',
+        question: `Welches ist die korrekte Grundstruktur eines HTML-Dokuments?`,
+        options: [
+            `&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;`,
+            `&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;`,
+            `&lt;html&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;`,
+            `&lt;head&gt;&lt;body&gt;&lt;/body&gt;&lt;/head&gt;`,
+        ],
+        correct: 1,
+        explanation: `Die korrekte Struktur beginnt mit &lt;!DOCTYPE html&gt;, gefolgt von &lt;html&gt;, dann &lt;head&gt; und &lt;body&gt; Bereichen. Der DOCTYPE definiert den HTML5-Standard.`
+    },
+    {
+        type: 'fillblank',
+        number: 2,
+        topic: 'Tags/Attribute',
+        question: `Ergänze: Das Meta-Tag für die Zeichenkodierung lautet:<br><div class="fill-blank">&lt;meta <input type="text" class="blank-input" data-answer="charset" placeholder="Attribut"> = "<input type="text" class="blank-input" data-answer="UTF-8" placeholder="Wert">"&gt;</div>`,
+        blanks: [
+            'charset',
+            'UTF-8',
+        ],
+        explanation: `&lt;met <strong>charset</strong> = "<strong>UTF-8</strong>"&gt; - Das charset-Attribut definiert die Zeichenkodierung des Dokuments.`
+    },
+    {
+        type: 'multiple',
+        number: 3,
+        topic: 'Semantische Elemente',
+        question: `Welches HTML5-Element sollte für den Hauptinhalt einer Seite verwendet werden?`,
+        options: [
+            `&lt;div id="main"&gt;`,
+            `&lt;main&gt;`,
+            `&lt;content&gt;`,
+            `&lt;section&gt;`,
+        ],
+        correct: 1,
+        explanation: `Das &lt;main&gt;-Element ist das semantische HTML5-Element für den Hauptinhalt. Es sollte nur einmal pro Seite verwendet werden.`
+    },
+    {
+        type: 'multiple',
+        number: 4,
+        topic: 'Typische Fehler',
+        question: `Finde den Fehler in diesem Code:<div class="code-block">&lt;img src="bild.jpg" alt="Ein Bild"&gt;&lt;/img&gt;</div>`,
+        options: [
+            `Das alt-Attribut fehlt`,
+            `Das &lt;img&gt;-Tag ist selbstschließend und benötigt keinen schließenden Tag`,
+            `Der src-Pfad ist falsch`,
+            `Es gibt keinen Fehler`,
+        ],
+        correct: 1,
+        explanation: `Das &lt;img&gt;-Tag ist ein <strong>selbstschließendes Tag</strong> und benötigt keinen schließenden Tag. Korrekt: &lt;img src="bild.jpg" alt="Ein Bild"&gt; oder &lt;img src="bild.jpg" alt="Ein Bild" /&gt;`
+    },
+    {
+        type: 'multiple',
+        number: 5,
+        topic: 'Überschriften',
+        question: `Welche Überschriften-Hierarchie ist korrekt?`,
+        options: [
+            `h1 → h3 → h2 → h4`,
+            `h1 → h2 → h3 → h4`,
+            `h6 → h5 → h4 → h3`,
+            `Man kann beliebig springen`,
+        ],
+        correct: 1,
+        explanation: `Überschriften sollten hierarchisch von h1 (wichtigste) bis h6 (am wenigsten wichtig) verwendet werden, ohne Ebenen zu überspringen.`
+    },
+    {
+        type: 'fillblank',
+        number: 6,
+        topic: 'Listen',
+        question: `Ergänze die Tags für eine ungeordnete Liste:<br><div class="fill-blank">&lt;<input type="text" class="blank-input" data-answer="ul" placeholder="Tag">&gt;<br>&nbsp;&nbsp;&lt;<input type="text" class="blank-input" data-answer="li" placeholder="Tag">&gt;Punkt 1&lt;/li&gt;<br>&lt;/ul&gt;</div>`,
+        blanks: [
+            'ul',
+            'li',
+        ],
+        explanation: `&lt;<strong>ul</strong>&gt; (unordered list) und &lt;<strong>li</strong>&gt; (list item). ul = ungeordnete Liste, li = Listenelement`
+    },
+    {
+        type: 'multiple',
+        number: 7,
+        topic: 'Links',
+        question: `Welches Attribut wird verwendet, um einen Link in einem neuen Tab zu öffnen?`,
+        options: [
+            `newtab="true"`,
+            `target="_blank"`,
+            `open="new"`,
+            `window="new"`,
+        ],
+        correct: 1,
+        explanation: `Das target="_blank" Attribut öffnet den Link in einem neuen Tab/Fenster. Beispiel: &lt;a href="url" target="_blank"&gt;Link&lt;/a&gt;`
+    },
+    {
+        type: 'multiple',
+        number: 8,
+        topic: 'CSS-Syntax',
+        question: `Was ist falsch an dieser CSS-Regel?<div class="code-block">p {
+    color = red;
+    font-size: 16px
+}</div>`,
+        options: [
+            `Nur das Gleichheitszeichen ist falsch`,
+            `Nur das fehlende Semikolon ist falsch`,
+            `Beides: Gleichheitszeichen statt Doppelpunkt und fehlendes Semikolon`,
+            `Die Regel ist korrekt`,
+        ],
+        correct: 2,
+        explanation: `<strong>Fehler:</strong> 1) "color = red" muss "color: red;" sein (Doppelpunkt statt Gleichheitszeichen), 2) Nach "16px" fehlt ein Semikolon`
+    },
+    {
+        type: 'multiple',
+        number: 9,
+        topic: 'CSS-Einbindung',
+        question: `Welche CSS-Einbindungsmethode hat die höchste Priorität?`,
+        options: [
+            `Externe CSS-Datei (extern)`,
+            `&lt;style&gt;-Tag im &lt;head&gt; (intern)`,
+            `style-Attribut im HTML-Tag (inline)`,
+            `Alle haben gleiche Priorität`,
+        ],
+        correct: 2,
+        explanation: `Inline-Styles (style-Attribut) haben die höchste Priorität, gefolgt von internen Styles (&lt;style&gt;-Tag) und externen CSS-Dateien. Dies nennt man die "CSS-Kaskade".`
+    },
+    {
+        type: 'fillblank',
+        number: 10,
+        topic: 'Block/Inline',
+        question: `&lt;div&gt; ist ein <input type="text" class="blank-input" data-answer="block" placeholder="Block oder Inline?">-Element,<br>&lt;span&gt; ist ein <input type="text" class="blank-input" data-answer="inline" placeholder="Block oder Inline?">-Element.`,
+        blanks: [
+            'block',
+            'inline',
+        ],
+        explanation: `&lt;div&gt; ist ein <strong>Block</strong>-Element (nimmt die ganze Breite ein, neue Zeile), &lt;span&gt; ist ein <strong>Inline</strong>-Element (nur so breit wie nötig, keine neue Zeile).`
+    },
+    {
+        type: 'multiple',
+        number: 11,
+        topic: 'Farben',
+        question: `Welche Farbangabe ist NICHT gültig in CSS?`,
+        options: [
+            `color: red;`,
+            `color: #FF0000;`,
+            `color: rgb(255, 0, 0);`,
+            `color: (255-0-0);`,
+        ],
+        correct: 3,
+        explanation: `Die Syntax (255-0-0) ist ungültig. Gültige Farbangaben sind: Farbnamen (red), Hex (#FF0000), RGB (rgb(255, 0, 0)), RGBA, HSL, HSLA.`
+    },
+    {
+        type: 'fillblank',
+        number: 12,
+        topic: 'Attribute',
+        question: `Vervollständige den Link mit allen wichtigen Attributen:<div class="code-block">&lt;a <input type="text" class="blank-input" data-answer="href" placeholder="Attribut">="https://example.com" <input type="text" class="blank-input" data-answer="title" placeholder="Attribut">="Beispielseite"&gt;Klick hier&lt;/a&gt;</div>`,
+        blanks: [
+            'href',
+            'title',
+        ],
+        explanation: `<strong>href</strong> = Hyperlink-Referenz (Ziel-URL), <strong>title</strong> = Tooltip-Text beim Hovern`
+    },
+    {
+        type: 'multiple',
+        number: 13,
+        topic: 'Absätze',
+        question: `Welches Tag wird für einen Absatz verwendet?`,
+        options: [
+            `&lt;paragraph&gt;`,
+            `&lt;p&gt;`,
+            `&lt;text&gt;`,
+            `&lt;para&gt;`,
+        ],
+        correct: 1,
+        explanation: `Das &lt;p&gt;-Tag (paragraph) wird für Textabsätze verwendet. Es ist ein Block-Element mit automatischem Abstand oben und unten.`
+    },
+    {
+        type: 'fillblank',
+        number: 14,
+        topic: 'CSS-Einbindung',
+        question: `Ergänze den Code zum Einbinden einer externen CSS-Datei im &lt;head&gt;:<br><div class="fill-blank">&lt;<input type="text" class="blank-input" data-answer="link" placeholder="Tag"> rel="<input type="text" class="blank-input" data-answer="stylesheet" placeholder="Wert">" href="styles.css"&gt;</div>`,
+        blanks: [
+            'link',
+            'stylesheet',
+        ],
+        explanation: `Das &lt;<strong>link</strong>&gt;-Tag mit rel="<strong>stylesheet</strong>" bindet externe CSS-Dateien ein.`
+    },
+    {
+        type: 'multiple',
+        number: 15,
+        topic: 'Typische Fehler',
+        question: `Was ist falsch an diesem Code?<div class="code-block">&lt;p&gt;Dies ist ein &lt;strong&gt;wichtiger&lt;/p&gt;&lt;/strong&gt; Text.</div>`,
+        options: [
+            `Das strong-Tag existiert nicht`,
+            `Die Tags sind falsch verschachtelt`,
+            `Es fehlt ein schließendes Tag`,
+            `Alles ist korrekt`,
+        ],
+        correct: 1,
+        explanation: `Die Tags sind <strong>falsch verschachtelt</strong>. Das &lt;strong&gt;-Tag wurde geöffnet, bevor &lt;p&gt; geschlossen wurde. <strong>Korrekt:</strong> &lt;p&gt;Dies ist ein &lt;strong&gt;wichtiger&lt;/strong&gt; Text.&lt;/p&gt;`
+    },
+    {
+        type: 'multiple',
+        number: 16,
+        topic: 'Fachbegriffe',
+        question: `Was bedeutet "CSS" als Abkürzung?`,
+        options: [
+            `Computer Style Sheets`,
+            `Cascading Style Sheets`,
+            `Creative Style System`,
+            `Coded Style Syntax`,
+        ],
+        correct: 1,
+        explanation: `CSS = <strong>Cascading Style Sheets</strong> (Kaskadierende Stilvorlagen). "Cascading" bezieht sich auf die Art, wie Stilregeln vererbt und überschrieben werden.`
+    },
+    {
+        type: 'multiple',
+        number: 17,
+        topic: 'Semantische Elemente',
+        question: `Welches Element ist für die Navigation (Menü) am besten geeignet?`,
+        options: [
+            `&lt;header&gt;`,
+            `&lt;nav&gt;`,
+            `&lt;menu&gt;`,
+            `&lt;links&gt;`,
+        ],
+        correct: 1,
+        explanation: `&lt;<strong>nav</strong>&gt; ist das semantische Element für Navigationsbereiche (Menü, Links).`
+    },
+    {
+        type: 'multiple',
+        number: 18,
+        topic: 'Bilder',
+        question: `Welches Attribut ist beim &lt;img&gt;-Tag ZWINGEND erforderlich?`,
+        options: [
+            `width und height`,
+            `src und alt`,
+            `title`,
+            `class`,
+        ],
+        correct: 1,
+        explanation: `<strong>src</strong> (Bildquelle) und <strong>alt</strong> (Alternativtext) sind erforderlich. Der alt-Text ist wichtig für Barrierefreiheit und wird angezeigt, wenn das Bild nicht geladen werden kann.`
+    },
+    {
+        type: 'fillblank',
+        number: 19,
+        topic: 'Listen',
+        question: `Eine geordnete Liste wird mit dem Tag <input type="text" class="blank-input" data-answer="ol" placeholder="Tag"> erstellt,<br>während eine ungeordnete Liste das Tag <input type="text" class="blank-input" data-answer="ul" placeholder="Tag"> verwendet.`,
+        blanks: [
+            'ol',
+            'ul',
+        ],
+        explanation: `Eine geordnete Liste wird mit dem Tag <strong>&lt;ol&gt;</strong> (ordered list) erstellt, eine ungeordnete Liste mit <strong>&lt;ul&gt;</strong> (unordered list).`
+    },
+    {
+        type: 'multiple',
+        number: 20,
+        topic: 'CSS-Syntax',
+        question: `Welcher CSS-Selektor wählt ein Element mit der ID "header" aus?`,
+        options: [
+            `.header { }`,
+            `#header { }`,
+            `header { }`,
+            `*header { }`,
+        ],
+        correct: 1,
+        explanation: `<strong>#header { }</strong> wählt ein Element mit id="header" aus. <strong>.</strong> = Klassen-Selektor, <strong>#</strong> = ID-Selektor`
+    },
+    {
+        type: 'multiple',
+        number: 21,
+        topic: 'Media-Elemente',
+        question: `Welches Attribut ermöglicht es, dass ein Video automatisch abgespielt wird?`,
+        options: [
+            `play="auto"`,
+            `autoplay`,
+            `auto="true"`,
+            `start="auto"`,
+        ],
+        correct: 1,
+        explanation: `Das <strong>autoplay</strong>-Attribut startet das Video automatisch beim Laden der Seite. Beispiel: &lt;video src="video.mp4" autoplay controls&gt;&lt;/video&gt;`
+    },
+    {
+        type: 'fillblank',
+        number: 22,
+        topic: 'Media-Elemente',
+        question: `Ergänze den Code für ein Audio-Element mit Steuerungselementen:<br><div class="fill-blank">&lt;<input type="text" class="blank-input" data-answer="audio" placeholder="Tag"> src="musik.mp3" <input type="text" class="blank-input" data-answer="controls" placeholder="Attribut">&gt;&lt;/audio&gt;</div>`,
+        blanks: [
+            'audio',
+            'controls',
+        ],
+        explanation: `Das <strong>controls</strong>-Attribut zeigt Play-, Pause- und Lautstärke-Buttons an. Ohne dieses Attribut wäre das Audio nicht steuerbar.`
+    },
+    {
+        type: 'multiple',
+        number: 23,
+        topic: 'Fachbegriffe',
+        question: `Was ist der Unterschied zwischen einem "Tag" und einem "Element"?`,
+        options: [
+            `Es gibt keinen Unterschied`,
+            `Ein Tag ist die Auszeichnung, ein Element besteht aus öffnendem Tag, Inhalt und schließendem Tag`,
+            `Ein Element ist nur der öffnende Tag`,
+            `Tags sind in HTML, Elemente in CSS`,
+        ],
+        correct: 1,
+        explanation: `Ein <strong>Tag</strong> ist die Markierung wie &lt;p&gt; oder &lt;/p&gt;. Ein <strong>Element</strong> ist das komplette Konstrukt: &lt;p&gt;Text&lt;/p&gt; (öffnendes Tag + Inhalt + schließendes Tag).`
+    },
+    {
+        type: 'multiple',
+        number: 24,
+        topic: 'Fachbegriffe',
+        question: `Im Code &lt;img src="logo.png" width="200"&gt; sind "src" und "width" die...`,
+        options: [
+            `Werte`,
+            `Attribute`,
+            `Elemente`,
+            `Tags`,
+        ],
+        correct: 1,
+        explanation: `<strong>Attribute:</strong> src, width<br><strong>Werte:</strong> "logo.png", "200"<br>Ein <strong>Attribut</strong> ist die Eigenschaft, der <strong>Wert</strong> ist die Zuweisung.`
+    },
+    {
+        type: 'multiple',
+        number: 25,
+        topic: 'HTML-Aufbau',
+        question: `Welche Elemente gehören in den &lt;head&gt;-Bereich?`,
+        options: [
+            `&lt;title&gt;, &lt;meta&gt;, &lt;link&gt;`,
+            `&lt;p&gt;, &lt;div&gt;, &lt;h1&gt;`,
+            `&lt;img&gt;, &lt;video&gt;, &lt;audio&gt;`,
+            `&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;`,
+        ],
+        correct: 0,
+        explanation: `Der &lt;head&gt; enthält <strong>Meta-Informationen</strong>: &lt;title&gt; (Seitentitel), &lt;meta&gt; (Meta-Daten), &lt;link&gt; (CSS-Dateien, Favicon). Der &lt;body&gt; enthält den sichtbaren Inhalt.`
+    },
+    {
+        type: 'multiple',
+        number: 26,
+        topic: 'CSS-Syntax',
+        question: `Was ist der Unterschied zwischen margin und padding?`,
+        options: [
+            `margin ist Innenabstand, padding ist Außenabstand`,
+            `margin ist Außenabstand, padding ist Innenabstand`,
+            `Es gibt keinen Unterschied`,
+            `margin ist nur für Block-Elemente`,
+        ],
+        correct: 1,
+        explanation: `<strong>margin</strong> = <strong>Außenabstand</strong> (Abstand zu anderen Elementen), <strong>padding</strong> = <strong>Innenabstand</strong> (Abstand zwischen Rand und Inhalt). Box-Model: margin → border → padding → Inhalt`
+    },
+    {
+        type: 'multiple',
+        number: 27,
+        topic: 'Semantische Elemente',
+        question: `Welches Element ist am besten geeignet für einen eigenständigen Blogbeitrag?`,
+        options: [
+            `&lt;section&gt;`,
+            `&lt;article&gt;`,
+            `&lt;div&gt;`,
+            `&lt;aside&gt;`,
+        ],
+        correct: 1,
+        explanation: `&lt;<strong>article</strong>&gt; ist für <strong>eigenständige Inhalte</strong> gedacht (Blogposts, Nachrichtenartikel). &lt;section&gt; = thematischer Abschnitt, &lt;aside&gt; = Nebenbemerkung, &lt;div&gt; = generischer Container.`
+    },
+    {
+        type: 'fillblank',
+        number: 28,
+        topic: 'Links',
+        question: `Ergänze den Code für einen E-Mail-Link:<br><div class="fill-blank">&lt;a href="<input type="text" class="blank-input" data-answer="mailto" placeholder="Protokoll">:info@example.com"&gt;Kontakt&lt;/a&gt;</div>`,
+        blanks: [
+            'mailto',
+        ],
+        explanation: `Das <strong>mailto:</strong>-Protokoll öffnet das Standard-E-Mail-Programm mit der angegebenen Adresse.`
+    },
+    {
+        type: 'multiple',
+        number: 29,
+        topic: 'Browser-Rendering',
+        question: `Was bedeutet "DOM" im Kontext von Webbrowsern?`,
+        options: [
+            `Document Object Model`,
+            `Data Output Method`,
+            `Digital Online Media`,
+            `Display Order Management`,
+        ],
+        correct: 0,
+        explanation: `DOM = <strong>Document Object Model</strong>. Der DOM ist die Baumstruktur, in die der Browser das HTML-Dokument umwandelt. Jedes HTML-Element wird zu einem Objekt (Knoten) im DOM-Baum.`
+    },
+    {
+        type: 'multiple',
+        number: 30,
+        topic: 'Semantische Elemente',
+        question: `Welches Element kennzeichnet den Hauptinhalt einer Seite?`,
+        options: [
+            `&lt;main&gt;`,
+            `&lt;header&gt;`,
+            `&lt;footer&gt;`,
+            `&lt;nav&gt;`,
+        ],
+        correct: 0,
+        explanation: `&lt;<strong>main</strong>&gt; = Hauptinhalt der Seite (sollte nur einmal verwendet werden), &lt;header&gt; = Kopfbereich, &lt;footer&gt; = Fußbereich, &lt;nav&gt; = Navigation`
+    },
+];
 
-        function toggleAnswers() {
-            answersVisible = !answersVisible;
-            const answers = document.querySelectorAll('.answer');
-            
-            answers.forEach(answer => {
-                if (answersVisible) {
-                    answer.classList.add('visible');
-                } else {
-                    answer.classList.remove('visible');
-                }
+
+
+let currentQuestionIndex = 0;
+let userAnswers = [];
+let score = 0;
+
+function startQuiz() {
+    document.getElementById('startScreen').style.display = 'none';
+    document.getElementById('quizContent').classList.add('active');
+    document.getElementById('totalQuestions').textContent = questions.length;
+    renderQuestions();
+    showQuestion(0);
+}
+
+function renderQuestions() {
+    const container = document.getElementById('questionsContainer');
+    container.innerHTML = '';
+    
+    questions.forEach((q, index) => {
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'question-block';
+        questionDiv.id = `question-${index}`;
+        
+        let questionHTML = `
+            <div class="question-number">Frage ${q.number} <span class="topic-badge">${q.topic}</span></div>
+            <div class="question-text">${q.question}</div>
+        `;
+        
+        if (q.type === 'multiple') {
+            questionHTML += '<div class="options">';
+            q.options.forEach((option, optIndex) => {
+                const letter = String.fromCharCode(65 + optIndex);
+                questionHTML += `<div class="option" onclick="selectOption(${index}, ${optIndex})" data-option="${optIndex}">${letter}) ${option}</div>`;
             });
+            questionHTML += '</div>';
+        } else if (q.type === 'fillblank') {
+            // Question already includes the input fields in the question text
+            questionHTML += `<button class="check-answer-btn" onclick="checkFillBlankAnswer(${index})">Antwort prüfen</button>`;
         }
+        
+        questionHTML += `<div class="answer-feedback" id="feedback-${index}"><div class="answer-label">✓ Erklärung:</div><div id="feedback-text-${index}"></div></div>`;
+        
+        questionDiv.innerHTML = questionHTML;
+        container.appendChild(questionDiv);
+    });
+}
 
-        // Optionale Funktionalität: Enter-Taste in Textfeldern
-        document.querySelectorAll('input[type="text"]').forEach(input => {
-            input.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    const questionBlock = this.closest('.question-block');
-                    const answer = questionBlock.querySelector('.answer');
-                    if (!answer.classList.contains('visible')) {
-                        answer.classList.add('visible');
-                    }
-                }
-            });
-        });
+function showQuestion(index) {
+    document.querySelectorAll('.question-block').forEach(q => q.classList.remove('active'));
+    document.getElementById(`question-${index}`).classList.add('active');
+    currentQuestionIndex = index;
+    
+    document.getElementById('currentQuestion').textContent = index + 1;
+    document.getElementById('progressFill').style.width = `${((index + 1) / questions.length) * 100}%`;
+    
+    document.getElementById('prevBtn').disabled = index === 0;
+    
+    if (index === questions.length - 1) {
+        document.getElementById('nextBtn').style.display = 'none';
+        document.getElementById('finishBtn').style.display = 'block';
+    } else {
+        document.getElementById('nextBtn').style.display = 'block';
+        document.getElementById('finishBtn').style.display = 'none';
+    }
+    
+    updateNextButton();
+}
+
+function selectOption(questionIndex, optionIndex) {
+    const question = questions[questionIndex];
+    if (questionIndex !== currentQuestionIndex) return;
+    
+    const questionBlock = document.getElementById(`question-${questionIndex}`);
+    const options = questionBlock.querySelectorAll('.option');
+    
+    options.forEach(opt => opt.classList.remove('selected'));
+    options[optionIndex].classList.add('selected');
+    
+    userAnswers[questionIndex] = optionIndex;
+    
+    const feedbackDiv = document.getElementById(`feedback-${questionIndex}`);
+    const feedbackText = document.getElementById(`feedback-text-${questionIndex}`);
+    feedbackText.innerHTML = question.explanation;
+    feedbackDiv.classList.add('visible');
+    
+    document.getElementById('nextBtn').disabled = false;
+    if (questionIndex === questions.length - 1) {
+        document.getElementById('finishBtn').disabled = false;
+    }
+}
+
+function checkFillBlankAnswer(questionIndex) {
+    if (questionIndex !== currentQuestionIndex) return;
+    
+    const question = questions[questionIndex];
+    const questionBlock = document.getElementById(`question-${questionIndex}`);
+    const inputs = questionBlock.querySelectorAll('.blank-input');
+    
+    let allCorrect = true;
+    inputs.forEach((input, index) => {
+        const userAnswer = input.value.trim().toLowerCase();
+        const correctAnswer = question.blanks[index].toLowerCase();
+        
+        if (userAnswer === correctAnswer) {
+            input.classList.add('correct');
+            input.classList.remove('incorrect');
+        } else {
+            input.classList.add('incorrect');
+            input.classList.remove('correct');
+            allCorrect = false;
+        }
+    });
+    
+    userAnswers[questionIndex] = allCorrect;
+    
+    const feedbackDiv = document.getElementById(`feedback-${questionIndex}`);
+    const feedbackText = document.getElementById(`feedback-text-${questionIndex}`);
+    feedbackText.innerHTML = question.explanation;
+    feedbackDiv.classList.add('visible');
+    
+    document.getElementById('nextBtn').disabled = false;
+    if (questionIndex === questions.length - 1) {
+        document.getElementById('finishBtn').disabled = false;
+    }
+}
+
+function updateNextButton() {
+    const currentQuestion = questions[currentQuestionIndex];
+    const answered = userAnswers[currentQuestionIndex] !== undefined;
+    
+    if (currentQuestionIndex === questions.length - 1) {
+        document.getElementById('finishBtn').disabled = !answered;
+    } else {
+        document.getElementById('nextBtn').disabled = !answered;
+    }
+}
+
+function previousQuestion() {
+    if (currentQuestionIndex > 0) {
+        showQuestion(currentQuestionIndex - 1);
+    }
+}
+
+function nextQuestion() {
+    if (currentQuestionIndex < questions.length - 1) {
+        showQuestion(currentQuestionIndex + 1);
+    }
+}
+
+function finishQuiz() {
+    calculateScore();
+    showResults();
+}
+
+function calculateScore() {
+    score = 0;
+    questions.forEach((q, index) => {
+        if (q.type === 'multiple') {
+            if (userAnswers[index] === q.correct) {
+                score++;
+            }
+        } else if (q.type === 'fillblank') {
+            if (userAnswers[index] === true) {
+                score++;
+            }
+        }
+    });
+}
+
+function showResults() {
+    document.getElementById('quizContent').classList.remove('active');
+    document.getElementById('resultsScreen').classList.add('active');
+    
+    const percentage = Math.round((score / questions.length) * 100);
+    const grade = calculateGrade(percentage);
+    const gradeText = getGradeText(grade);
+    
+    document.getElementById('gradeDisplay').textContent = grade.toFixed(1);
+    document.getElementById('gradeText').textContent = gradeText;
+    document.getElementById('correctAnswers').textContent = score;
+    document.getElementById('percentage').textContent = percentage;
+}
+
+function calculateGrade(percentage) {
+    if (percentage >= 92) return 1.0;
+    else if (percentage >= 89) return 1.3;
+    else if (percentage >= 85) return 1.7;
+    else if (percentage >= 81) return 2.0;
+    else if (percentage >= 77) return 2.3;
+    else if (percentage >= 73) return 2.7;
+    else if (percentage >= 67) return 3.0;
+    else if (percentage >= 63) return 3.3;
+    else if (percentage >= 59) return 3.7;
+    else if (percentage >= 50) return 4.0;
+    else if (percentage >= 40) return 4.3;
+    else if (percentage >= 30) return 5.0;
+    else return 6.0;
+}
+
+function getGradeText(grade) {
+    if (grade >= 1.0 && grade <= 1.5) return 'Sehr gut! 🌟';
+    else if (grade >= 1.6 && grade <= 2.5) return 'Gut! 👍';
+    else if (grade >= 2.6 && grade <= 3.5) return 'Befriedigend 👌';
+    else if (grade >= 3.6 && grade <= 4.0) return 'Ausreichend ✓';
+    else if (grade >= 4.1 && grade <= 5.0) return 'Mangelhaft 📚';
+    else return 'Ungenügend 😔';
+}
+
+function restartQuiz() {
+    currentQuestionIndex = 0;
+    userAnswers = [];
+    score = 0;
+    
+    document.getElementById('resultsScreen').classList.remove('active');
+    document.getElementById('startScreen').style.display = 'block';
+    
+    document.querySelectorAll('.option').forEach(opt => {
+        opt.classList.remove('selected');
+    });
+    document.querySelectorAll('.blank-input').forEach(input => {
+        input.value = '';
+        input.classList.remove('correct', 'incorrect');
+    });
+    document.querySelectorAll('.answer-feedback').forEach(fb => {
+        fb.classList.remove('visible');
+    });
+}
     </script>
 </body>
 </html>
