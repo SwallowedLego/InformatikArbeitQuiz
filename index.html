@@ -22,6 +22,8 @@
         .option { margin: 12px 0; padding: 15px; background: white; border: 2px solid #ddd; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
         .option:hover { background: #f0f0f0; border-color: #667eea; }
         .option.selected { background: #e7f3ff; border-color: #667eea; font-weight: bold; }
+        .option.selected.incorrect { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+        .option.correct { background: #d4edda; border-color: #28a745; color: #155724; font-weight: bold; }
         .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; font-family: 'Courier New', monospace; margin: 10px 0; overflow-x: auto; white-space: pre-wrap; }
         .answer-feedback { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; padding: 15px; margin-top: 20px; border-radius: 5px; display: none; }
         .answer-feedback.visible { display: block; }
@@ -98,6 +100,10 @@ const questions = [
         number: 1,
         topic: 'HTML-Aufbau',
         question: `Welches ist die korrekte Grundstruktur eines HTML-Dokuments?`,
+        variations: [
+            `Wie lautet die korrekte Grundstruktur eines HTML5-Dokuments?`,
+            `Welche HTML-Struktur ist standardkonform?`,
+        ],
         options: [
             `&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;`,
             `&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;`,
@@ -123,6 +129,10 @@ const questions = [
         number: 3,
         topic: 'Semantische Elemente',
         question: `Welches HTML5-Element sollte für den Hauptinhalt einer Seite verwendet werden?`,
+        variations: [
+            `Mit welchem HTML5-Tag kennzeichnet man den Hauptinhalt?`,
+            `Welches semantische Element markiert den Hauptinhalt?`,
+        ],
         options: [
             `&lt;div id="main"&gt;`,
             `&lt;main&gt;`,
@@ -151,6 +161,10 @@ const questions = [
         number: 5,
         topic: 'Überschriften',
         question: `Welche Überschriften-Hierarchie ist korrekt?`,
+        variations: [
+            `Wie sollten HTML-Überschriften strukturiert sein?`,
+            `In welcher Reihenfolge verwendet man Überschriften-Tags?`,
+        ],
         options: [
             `h1 → h3 → h2 → h4`,
             `h1 → h2 → h3 → h4`,
@@ -176,6 +190,10 @@ const questions = [
         number: 7,
         topic: 'Links',
         question: `Welches Attribut wird verwendet, um einen Link in einem neuen Tab zu öffnen?`,
+        variations: [
+            `Wie öffnet man einen Link in einem neuen Browser-Tab?`,
+            `Mit welchem Attribut öffnet sich ein Link in einem neuen Fenster?`,
+        ],
         options: [
             `newtab="true"`,
             `target="_blank"`,
@@ -207,6 +225,10 @@ const questions = [
         number: 9,
         topic: 'CSS-Einbindung',
         question: `Welche CSS-Einbindungsmethode hat die höchste Priorität?`,
+        variations: [
+            `Welche CSS-Methode überschreibt alle anderen?`,
+            `Welche Art der CSS-Einbindung wird zuerst angewendet?`,
+        ],
         options: [
             `Externe CSS-Datei (extern)`,
             `&lt;style&gt;-Tag im &lt;head&gt; (intern)`,
@@ -257,6 +279,10 @@ const questions = [
         number: 13,
         topic: 'Absätze',
         question: `Welches Tag wird für einen Absatz verwendet?`,
+        variations: [
+            `Mit welchem HTML-Tag erstellt man einen Textabsatz?`,
+            `Welches Element kennzeichnet einen Absatz?`,
+        ],
         options: [
             `&lt;paragraph&gt;`,
             `&lt;p&gt;`,
@@ -296,6 +322,10 @@ const questions = [
         number: 16,
         topic: 'Fachbegriffe',
         question: `Was bedeutet "CSS" als Abkürzung?`,
+        variations: [
+            `Wofür steht die Abkürzung "CSS"?`,
+            `Was ist die Bedeutung von CSS?`,
+        ],
         options: [
             `Computer Style Sheets`,
             `Cascading Style Sheets`,
@@ -310,6 +340,10 @@ const questions = [
         number: 17,
         topic: 'Semantische Elemente',
         question: `Welches Element ist für die Navigation (Menü) am besten geeignet?`,
+        variations: [
+            `Mit welchem Tag kennzeichnet man ein Navigationsmenü?`,
+            `Welches semantische Element wird für Menüs verwendet?`,
+        ],
         options: [
             `&lt;header&gt;`,
             `&lt;nav&gt;`,
@@ -349,6 +383,10 @@ const questions = [
         number: 20,
         topic: 'CSS-Syntax',
         question: `Welcher CSS-Selektor wählt ein Element mit der ID "header" aus?`,
+        variations: [
+            `Wie selektiert man ein Element mit einer bestimmten ID in CSS?`,
+            `Mit welchem Selektor wählt man die ID "header"?`,
+        ],
         options: [
             `.header { }`,
             `#header { }`,
@@ -430,6 +468,10 @@ const questions = [
         number: 26,
         topic: 'CSS-Syntax',
         question: `Was ist der Unterschied zwischen margin und padding?`,
+        variations: [
+            `Wie unterscheiden sich margin und padding in CSS?`,
+            `Was ist margin und was ist padding?`,
+        ],
         options: [
             `margin ist Innenabstand, padding ist Außenabstand`,
             `margin ist Außenabstand, padding ist Innenabstand`,
@@ -499,7 +541,52 @@ let currentQuestionIndex = 0;
 let userAnswers = [];
 let score = 0;
 
+// Function to shuffle array and return new array with shuffled elements
+function shuffleArray(array) {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+}
+
+// Function to randomize multiple choice questions
+function randomizeQuestions() {
+    questions.forEach(question => {
+        if (question.type === 'multiple') {
+            // Store original correct answer
+            const correctAnswer = question.options[question.correct];
+            
+            // Create array of indices and shuffle
+            const indices = question.options.map((_, i) => i);
+            const shuffledIndices = shuffleArray(indices);
+            
+            // Reorder options based on shuffled indices
+            const newOptions = shuffledIndices.map(i => question.options[i]);
+            
+            // Find new position of correct answer
+            const newCorrectIndex = shuffledIndices.indexOf(question.correct);
+            
+            // Update question
+            question.options = newOptions;
+            question.correct = newCorrectIndex;
+            
+            // If question has variations, randomly select one
+            if (question.variations && question.variations.length > 0) {
+                const randomIndex = Math.floor(Math.random() * (question.variations.length + 1));
+                if (randomIndex < question.variations.length) {
+                    question.question = question.variations[randomIndex];
+                }
+            }
+        }
+    });
+}
+
 function startQuiz() {
+    // Randomize questions before starting
+    randomizeQuestions();
+    
     document.getElementById('startScreen').style.display = 'none';
     document.getElementById('quizContent').classList.add('active');
     document.getElementById('totalQuestions').textContent = questions.length;
@@ -568,8 +655,18 @@ function selectOption(questionIndex, optionIndex) {
     const questionBlock = document.getElementById(`question-${questionIndex}`);
     const options = questionBlock.querySelectorAll('.option');
     
-    options.forEach(opt => opt.classList.remove('selected'));
+    options.forEach(opt => {
+        opt.classList.remove('selected', 'incorrect', 'correct');
+    });
     options[optionIndex].classList.add('selected');
+    
+    // Check if answer is correct and add appropriate class
+    const isCorrect = optionIndex === question.correct;
+    if (!isCorrect) {
+        options[optionIndex].classList.add('incorrect');
+    } else {
+        options[optionIndex].classList.add('correct');
+    }
     
     userAnswers[questionIndex] = optionIndex;
     
@@ -710,7 +807,7 @@ function restartQuiz() {
     document.getElementById('startScreen').style.display = 'block';
     
     document.querySelectorAll('.option').forEach(opt => {
-        opt.classList.remove('selected');
+        opt.classList.remove('selected', 'incorrect', 'correct');
     });
     document.querySelectorAll('.blank-input').forEach(input => {
         input.value = '';
